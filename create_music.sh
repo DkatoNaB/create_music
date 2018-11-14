@@ -1,14 +1,15 @@
 #!/usr/bin/bash
 
+PATH_DOWNLOAD_FOLDER=${HOME}/music
 function main()
 {
-	cd ${HOME}/Music
+	cd $PATH_DOWNLOAD_FOLDER
 	link=$1
 	out_put_name=$2
 	filename=$(youtube-dl --get-filename $link)
 	youtube-dl $link
 	ffmpeg -i "$filename" -b:a 192k $out_put_name.mp3
-	rm $filename
+	rm "$filename"
 }
 
 if [[ $1 = "e" ]]; then
